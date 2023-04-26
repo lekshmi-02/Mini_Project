@@ -61,7 +61,7 @@ appointment_data = [{"doctor_id": "D001", "appointments": [
 
 
 def get_patient_history(patient_id):
-    with open('patient_history.json') as f:
+    with open('Doctor GUI/patient_history.json') as f:
         data = json.load(f)
 
     appointments = []
@@ -150,24 +150,24 @@ def add_checkup_summary():
     checkup_summary_window.title("Checkup Summary")
     patient_id_label = tk.Label(checkup_summary_window, text="Patient ID")
     patient_id_label.grid(row=0,column=0)
-    patient_id_entry = tk.Entry(checkup_summary_window)
-    patient_id_entry.grid(row=0,column=1)
+    patient_id_entry = tk.Entry(checkup_summary_window,justify="left")
+    patient_id_entry.grid(row=1,column=0)
     date_label = tk.Label(checkup_summary_window, text="Date")
-    date_label.grid(row=1,column=0)
-    date_entry = tk.Entry(checkup_summary_window)
-    date_entry.grid(row=1,column=1)
+    date_label.grid(row=2,column=0)
+    date_entry = tk.Entry(checkup_summary_window,)
+    date_entry.grid(row=3,column=0)
     symptoms_label = tk.Label(checkup_summary_window, text="Symptoms")
-    symptoms_label.grid(row=2,column=0)
-    symptom_entry = tk.Entry(checkup_summary_window)
-    symptom_entry.grid(row=2,column=1)
+    symptoms_label.grid(row=4,column=0)
+    symptom_entry = tk.Text(checkup_summary_window,height=4)
+    symptom_entry.grid(row=5,column=0)
     remedy_label = tk.Label(checkup_summary_window, text="Remedies")
-    remedy_label.grid(row=3,column=0)
-    remedy_entry = tk.Entry(checkup_summary_window)
-    remedy_entry.grid(row=3,column=1)
+    remedy_label.grid(row=6,column=0)
+    remedy_entry = tk.Text(checkup_summary_window,height=4)
+    remedy_entry.grid(row=7,column=0)
     prescription_label = tk.Label(checkup_summary_window, text="Prescriptions")
-    prescription_label.grid(row=4,column=0)
-    prescription_entry= tk.Entry(checkup_summary_window)
-    prescription_entry.grid(row=4,column=1)
+    prescription_label.grid(row=8,column=0)
+    prescription_entry= tk.Text(checkup_summary_window,height=5)
+    prescription_entry.grid(row=9,column=0)
 
 
     
