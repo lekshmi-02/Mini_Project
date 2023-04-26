@@ -1,0 +1,41 @@
+[
+    {
+        "patient_id": "1001",
+        "doctor_id": "D001",
+        "age": 35,
+        "gender": "Male",
+        "date": "2022-02-15",
+        "time": "10:00 AM",
+        "morning_session": true,
+        "evening_session": false,
+        "symptoms": ["Fever", "Cough", "Headache"],
+        "prescriptions": ["Paracetamol", "Cough Syrup"],
+        "remedies": ["Rest", "Drink plenty of fluids"]
+    },
+    {
+        "patient_id": "1001",
+        "doctor_id": "D002",
+        "age": 35,
+        "gender": "Male",
+        "date": "2022-03-20",
+        "time": "02:00 PM",
+        "morning_session": false,
+        "evening_session": true,
+        "symptoms": ["Sore throat", "Fever"],
+        "prescriptions": ["Antibiotics"],
+        "remedies": ["Gargle with salt water", "Drink plenty of fluids"]
+    },
+    {
+        "patient_id": "1002",
+        "doctor_id": "D001",
+        "age": 28,
+        "gender": "Female",
+        "date": "2022-04-01",
+        "time": "09:00 AM",
+        "morning_session": true,
+        "evening_session": false,
+        "symptoms": ["Abdominal pain", "Nausea"],
+        "prescriptions": ["Antacids"],
+        "remedies": ["Avoid fatty foods", "Eat small, frequent meals"]
+    }
+]
