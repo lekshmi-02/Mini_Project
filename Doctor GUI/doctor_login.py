@@ -3,207 +3,12 @@ from tkinter import messagebox
 from datetime import datetime
 from tkinter import ttk
 
-doctor_details = [{
-    "doctorid": "#ORDR1005",
-    "doctorname": "Dr. Emily Chen",
-    "department": "Orthopedics"
-},
-    {
-        "doctorid": "#ORDR1006",
-        "doctorname": "Dr. Phoebe Buffay",
-        "department": "Gynaecology"
-    }
 
-]
-appointments = [
-    {
-        "id": 5,
-        "patientid": "#OR62593",
-        "patientname": "Phoebe",
-        "age": "18",
-        "gender": "female",
-        "doctorid": "#ORDR1005",
-        "doctorname": "Emily Chen",
-        "department": "Orthopaedics",
-        "date": "2023-05-28",
-        "time": "22:48:00",
-        "token": 1,
-        "symptoms": "Hello",
-        "prescription": "Hello",
-        "remedies": "Hello"
-    },
-    {
-        "id": 6,
-        "patientid": "#OR46473",
-        "patientname": "Joey",
-        "age": "20",
-        "gender": "male",
-        "doctorid": "#ORDR1005",
-        "doctorname": "Dr Susan",
-        "department": "Gynaecology",
-        "date": "2023-05-28",
-        "time": "22:48:00",
-        "token": 2,
-        "symptoms": "Headache",
-        "prescription": "Paracetamol",
-        "remedies": "Drink Water"
-    },
-    {
-        "id": 7,
-        "patientid": "#OR46473",
-        "patientname": "Mark",
-        "age": "18",
-        "gender": "female",
-        "doctorid": "#ORDR1005",
-        "doctorname": "1",
-        "department": "1",
-        "date": "2023-05-28",
-        "time": "22:48:00",
-        "token": 3,
-        "symptoms": "",
-        "prescription": "",
-        "remedies": ""
-    },
-    {
-        "id": 8,
-        "patientid": "#OR24872",
-        "patientname": "Rachel",
-        "age": "18",
-        "gender": "female",
-        "doctorid": "#ORDR1005",
-        "doctorname": "1",
-        "department": "1",
-        "date": "2023-05-28",
-        "time": "22:48:00",
-        "token": 4,
-        "symptoms": "",
-        "prescription": "",
-        "remedies": ""
-    },
-    {
-        "id": 9,
-        "patientid": "#OR57758",
-        "patientname": "Ross",
-        "age": "18",
-        "gender": "female",
-        "doctorid": "#ORDR1005",
-        "doctorname": "1",
-        "department": "1",
-        "date": "2023-05-28",
-        "time": "22:48:00",
-        "token": 5,
-        "symptoms": "",
-        "prescription": "",
-        "remedies": ""
-    },
-    {
-        "id": 10,
-        "patientid": "#OR56853",
-        "patientname": "chandler",
-        "age": "18",
-        "gender": "female",
-        "doctorid": "#ORDR1005",
-        "doctorname": "1",
-        "department": "1",
-        "date": "2023-05-28",
-        "time": "22:48:00",
-        "token": 6,
-        "symptoms": "",
-        "prescription": "",
-        "remedies": ""
-    }]
-    # {
-    #     "id": 11,
-    #     "patientid": "#OR22727",
-    #     "doctorid": "#ORDR1005",
-    #     "doctorname": "1",
-    #     "department": "1",
-    #     "date": "2023-05-28",
-    #     "time": "22:48:00",
-    #     "token": 7,
-    #     "symptoms": "",
-    #     "prescription": "",
-    #     "remedies": ""
-    # },
-    # {
-    #     "id": 12,
-    #     "patientid": "#OR21800",
-    #     "doctorid": "#ORDR1005",
-    #     "doctorname": "1",
-    #     "department": "1",
-    #     "date": "2023-05-28",
-    #     "time": "22:48:00",
-    #     "token": 8,
-    #     "symptoms": "",
-    #     "prescription": "",
-    #     "remedies": ""
-    # },
-    # {
-    #     "id": 13,
-    #     "patientid": "#OR23051",
-    #     "doctorid": "#ORDR1005",
-    #     "doctorname": "1",
-    #     "department": "1",
-    #     "date": "2023-05-28",
-    #     "time": "22:48:00",
-    #     "token": 9,
-    #     "symptoms": "",
-    #     "prescription": "",
-    #     "remedies": ""
-    # },
-    # {
-    #     "id": 14,
-    #     "patientid": "#OR33823",
-    #     "doctorid": "#ORDR1005",
-    #     "doctorname": "1",
-    #     "department": "1",
-    #     "date": "2023-05-28",
-    #     "time": "22:48:00",
-    #     "token": 10,
-    #     "symptoms": "",
-    #     "prescription": "",
-    #     "remedies": ""
-    # },
-    # {
-    #     "id": 15,
-    #     "patientid": "#OR54922",
-    #     "doctorid": "#ORDR1005",
-    #     "doctorname": "1",
-    #     "department": "1",
-    #     "date": "2023-05-28",
-    #     "time": "22:48:00",
-    #     "token": 11,
-    #     "symptoms": "",
-    #     "prescription": "",
-    #     "remedies": ""
-    # },
-    # {
-    #     "id": 16,
-    #     "patientid": "#OR77255",
-    #     "doctorid": "#ORDR1005",
-    #     "doctorname": "1",
-    #     "department": "1",
-    #     "date": "2023-05-28",
-    #     "time": "22:48:00",
-    #     "token": 12,
-    #     "symptoms": "",
-    #     "prescription": "",
-    #     "remedies": ""
-    # },
-    # {
-    #     "id": 17,
-    #     "patientid": "#OR99966",
-    #     "doctorid": "#ORDR1005",
-    #     "doctorname": "1",
-    #     "department": "1",
-    #     "date": "2023-05-28",
-    #     "time": "22:48:00",
-    #     "token": 13,
-    #     "symptoms": "",
-    #     "prescription": "",
-    #     "remedies": ""
-    # }]
+import requests
+import json
 
+
+global appointments
 
 class DoctorLogin:
     def __init__(self):
@@ -246,32 +51,41 @@ class DoctorLogin:
 
     def show_doctor_details(self):
         self.doctor_id = self.doctor_id_entry.get()
-        for data in doctor_details:
-            if self.doctor_id == data["doctorid"]:
-                self.doctor_window = Toplevel(self.window)
-                self.doctor_window.geometry("400x400")
-                self.doctor_window.config(padx=20, pady=20)
-                self.details_frame = LabelFrame(self.doctor_window, height=200, width=300, text="Doctor Details")
-                self.details_frame.pack()
-                self.doctor_window.title("Doctor Page")
-                self.doctor_name_label = Label(self.details_frame, text="Doctor Name :", )
-                self.doctor_name_label.place(x=65, y=30)
-                self.doctor_name = Label(self.details_frame, text=data["doctorname"])
-                self.doctor_name.place(x=145, y=30)
-                self.dep_name_label = Label(self.details_frame, text="Department    :")
-                self.dep_name_label.place(x=65, y=60)
-                self.dep_name = Label(self.details_frame, text=data["department"])
-                self.dep_name.place(x=145, y=60)
-                self.appointment_button = Button(self.details_frame, text="Show the appointments",
+        url = 'http://127.0.0.1:8000/doctor/api/'+self.doctor_id[1:]
+        response_API = requests.get(url)
+        data = response_API.text
+        parse_json = json.loads(data)
+        doctor_details = parse_json
+           
+        if self.doctor_id == doctor_details["doctorid"]:
+            self.doctor_window = Toplevel(self.window)
+            self.doctor_window.geometry("400x400")
+            self.doctor_window.config(padx=20, pady=20)
+            self.details_frame = LabelFrame(self.doctor_window, height=200, width=300, text="Doctor Details")
+            self.details_frame.pack()
+            self.doctor_window.title("Doctor Page")
+            self.doctor_name_label = Label(self.details_frame, text="Doctor Name :", )
+            self.doctor_name_label.place(x=65, y=30)
+            self.doctor_name = Label(self.details_frame, text=doctor_details["doctorname"])
+            self.doctor_name.place(x=145, y=30)
+            self.dep_name_label = Label(self.details_frame, text="Department    :")
+            self.dep_name_label.place(x=65, y=60)
+            self.dep_name = Label(self.details_frame, text=doctor_details["department"])
+            self.dep_name.place(x=145, y=60)
+            self.appointment_button = Button(self.details_frame, text="Show the appointments",
                                                  command=self.show_appointments)
-                self.appointment_button.place(x=80, y=100)
-                self.doctor_window.resizable(False, False)
-                break
-            else:
-                messagebox.showerror(title="Invalid id", message="Enter a valid Doctor Id")
+            self.appointment_button.place(x=80, y=100)
+            self.doctor_window.resizable(False, False)
+        else:
+            messagebox.showerror(title="Invalid id", message="Enter a valid Doctor Id")
 
     def show_appointments(self):
-        global appointments
+        url = 'http://127.0.0.1:8000/doctor/api/booking/'+self.doctor_id[1:]
+        response_API = requests.get(url)
+        data = response_API.text
+        parse_json = json.loads(data)
+        global appointments 
+        appointments =  parse_json
         for appointment in appointments:
             if appointment["doctorid"] == self.doctor_id and appointment["date"] == self.today_date:
                 self.appointments += 1
@@ -376,12 +190,17 @@ class DoctorLogin:
 
         for appointment in appointments:
             if appointment["token"] == self.token_no:
+                ptid = appointment["patientid"]
+                url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
+                response_API = requests.get(url)
+                data = response_API.text
+                parse_json = json.loads(data)
                 self.patient_id_value.config(text=f": {appointment['patientid']}",font=("Times New Roman", 13))
                 self.patient_id_value_checkup.config(text=f": {appointment['patientid']}",font=("Times New Roman", 13))
                 self.patient_id = appointment['patientid']
-                self.patient_name_value.config(text=f": {appointment['patientname']}",font=("Times New Roman", 13))
-                self.patient_age_value.config(text=f": {appointment['age']}",font=("Times New Roman", 13))
-                self.patient_gender_value.config(text=f": {appointment['gender']}",font=("Times New Roman", 13))
+                self.patient_name_value.config(text=f": {parse_json['firstname']}{parse_json['lastname']}",font=("Times New Roman", 13))
+                self.patient_age_value.config(text=f": {parse_json['age']}",font=("Times New Roman", 13))
+                self.patient_gender_value.config(text=f": {parse_json['gender']}",font=("Times New Roman", 13))
         for data in appointments:
             if self.patient_id == data['patientid']:
                 self.table.insert('', "end", values=[data["id"], data["date"], data["time"], data["doctorname"],
