@@ -198,7 +198,7 @@ class DoctorLogin:
                 self.patient_id_value.config(text=f": {appointment['patientid']}",font=("Times New Roman", 13))
                 self.patient_id_value_checkup.config(text=f": {appointment['patientid']}",font=("Times New Roman", 13))
                 self.patient_id = appointment['patientid']
-                self.patient_name_value.config(text=f": {parse_json['firstname']}{parse_json['lastname']}",font=("Times New Roman", 13))
+                self.patient_name_value.config(text=f": {parse_json['firstname']} {parse_json['lastname']}",font=("Times New Roman", 13))
                 self.patient_age_value.config(text=f": {parse_json['age']}",font=("Times New Roman", 13))
                 self.patient_gender_value.config(text=f": {parse_json['gender']}",font=("Times New Roman", 13))
         for data in appointments:
@@ -222,14 +222,19 @@ class DoctorLogin:
         else:
             for appointment in appointments:
                 if appointment["token"] == self.token_no:
+                    ptid = appointment["patientid"]
+                    url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
+                    response_API = requests.get(url)
+                    data = response_API.text
+                    parse_json = json.loads(data)
                     self.appointment_label.config(text=f"No: of appointments remaining: {self.appointments}")
                     self.token_no_label.config(text=f"Token Id : {self.token_no}")
                     self.patient_id_value.config(text=f": {appointment['patientid']}")
                     self.patient_id_value_checkup.config(text=f": {appointment['patientid']}")
-                    self.patient_name_value.config(text=f": {appointment['patientname']}")
-                    self.patient_age_value.config(text=f": {appointment['age']}")
-                    self.patient_gender_value.config(text=f": {appointment['gender']}")
                     self.patient_id = appointment['patientid']
+                    self.patient_name_value.config(text=f": {parse_json['firstname']} {parse_json['lastname']}",font=("Times New Roman", 13))
+                    self.patient_age_value.config(text=f": {parse_json['age']}",font=("Times New Roman", 13))
+                    self.patient_gender_value.config(text=f": {parse_json['gender']}",font=("Times New Roman", 13))
             for data in appointments:
                 if self.patient_id == data['patientid']:
                     self.table.delete(*self.table.get_children())
