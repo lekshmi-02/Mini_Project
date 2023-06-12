@@ -178,6 +178,8 @@ class DoctorLogin:
         self.prescription_label.place(x=50, y=280)
         self.prescription_entry = Text(self.checkup_summary_frame,height=5,width=50)
         self.prescription_entry.place(x=130, y=280)
+        self.save_button = Button(self.checkup_summary_frame,text="SAVE",bg="green",width=15)
+        self.save_button.place(x=400, y=20)
 
         # self.patient_age_label = Label(self.token_details_frame, text="Patient Age")
         # self.patient_age_label.place(x=80,y=100)
