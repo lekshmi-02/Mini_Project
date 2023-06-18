@@ -222,6 +222,9 @@ class DoctorLogin:
     def enable_button(self):
         self.in_button.config(state=NORMAL)
         self.out_button.config(state=DISABLED)
+        url =f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id}/out"
+        requests.get(url)
+
 
     def disable_button(self):
         self.out_button.config(state=NORMAL)

@@ -1,6 +1,6 @@
 import requests,json
-doctor_id = "#ORDR1004"
-ptid="#OR59038"
+doctor_id = "#ORDR1001"
+ptid="#OR15180"
 # url = 'http://127.0.0.1:8000/doctor/api/booking/'+doctor_id[1:]
 url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
 response_API = requests.get(url)
