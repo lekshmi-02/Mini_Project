@@ -139,6 +139,11 @@ class DoctorLogin:
         self.next_button = Button(self.token_details_frame, text="NEXT PATIENT", bg="green", width=15,
                                   command=self.next_session_details)
         self.next_button.place(x=110, y=100)
+        self.in_button = Button(self.token_details_frame, text="IN", bg="green",width=10,command=self.disable_button)
+        self.in_button.place(x=80, y=300)
+        self.out_button = Button(self.token_details_frame, text="OUT", bg="green",width=10,command=self.enable_button)
+        self.out_button.place(x=160, y=300)
+
         self.table = ttk.Treeview(self.session_window, columns=(
             "Id", "date", "time", "doctorname", "department", "symptoms", "prescription", "remedies"), show="headings")
         self.table.heading('Id', text="Id")
@@ -178,7 +183,7 @@ class DoctorLogin:
         self.prescription_label.place(x=50, y=280)
         self.prescription_entry = Text(self.checkup_summary_frame,height=5,width=50)
         self.prescription_entry.place(x=130, y=280)
-        self.save_button = Button(self.checkup_summary_frame,text="SAVE",bg="green",width=15)
+        self.save_button = Button(self.checkup_summary_frame,text="SAVE",bg="green",width=15,command=self.save_checkup_summary)
         self.save_button.place(x=400, y=20)
 
         # self.patient_age_label = Label(self.token_details_frame, text="Patient Age")
@@ -191,6 +196,7 @@ class DoctorLogin:
         # patient_gender_value.grid(row=8, column=1)
 
         for appointment in appointments:
+            self.id = appointment["id"]
             if appointment["token"] == self.token_no:
                 ptid = appointment["patientid"]
                 url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
@@ -213,6 +219,14 @@ class DoctorLogin:
         self.tab.add(self.table, text="Patient History")
         self.tab.add(self.checkup_summary_frame, text="Add checkup Summary")
 
+    def enable_button(self):
+        self.in_button.config(state=NORMAL)
+        self.out_button.config(state=DISABLED)
+
+    def disable_button(self):
+        self.out_button.config(state=NORMAL)
+        self.in_button.config(state=DISABLED)
+
     def next_session_details(self):
 
         global appointments
@@ -223,6 +237,7 @@ class DoctorLogin:
             self.doctor_window.destroy()
         else:
             for appointment in appointments:
+                self.id = appointment["id"]
                 if appointment["token"] == self.token_no:
                     ptid = appointment["patientid"]
                     url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
@@ -241,5 +256,24 @@ class DoctorLogin:
                 if self.patient_id == data['patientid']:
                     self.table.delete(*self.table.get_children())
                     self.table.insert('', "end", values=[data["id"], data["date"], data["time"], data["doctorname"],
-                                                         data["department"], data["symptoms"], data["prescription"],
+                                                     data["department"], data["symptoms"], data["prescription"],
                                                          data["remedies"]])
+
+    def save_checkup_summary(self):
+        global appointments
+        symptom_data = self.symptom_entry.get("1.0",END)
+        remedy_data = self.remedy_entry.get("1.0",END)
+        prescription_data = self.prescription_entry.get("1.0",END)
+        
+        url = "http://127.0.0.1:8000/doctor/api/checkup/"+str(self.id)
+
+        payload = {"symptom":symptom_data,"prescription":prescription_data,"remedy":remedy_data}
+        json_data = json.dumps(payload)
+        headers = {"Content-Type": "application/json"}
+
+        response = requests.post(url, data=json_data, headers=headers)
+
+        if response.status_code == 200:
+            print("Data posted successfully!")
+        else:
+            print("Error posting data:", response.text)
