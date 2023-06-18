@@ -220,15 +220,20 @@ class DoctorLogin:
         self.tab.add(self.checkup_summary_frame, text="Add checkup Summary")
 
     def enable_button(self):
-        self.in_button.config(state=NORMAL)
-        self.out_button.config(state=DISABLED)
-        url =f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id}/out"
-        requests.get(url)
+        self.in_button.config(state=NORMAL,bg="green")
+        self.out_button.config(state=DISABLED,bg="gray")
+        url =f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/out"
+        print(f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/out")
+        response =requests.get(url)
+        if response.status_code == 200:
+            print("Message sent successfully")
+        else:
+            print("Failed to send message")
 
 
     def disable_button(self):
-        self.out_button.config(state=NORMAL)
-        self.in_button.config(state=DISABLED)
+        self.out_button.config(state=NORMAL,bg="green")
+        self.in_button.config(state=DISABLED,bg="gray")
 
     def next_session_details(self):
 
