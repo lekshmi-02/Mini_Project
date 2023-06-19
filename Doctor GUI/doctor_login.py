@@ -196,8 +196,8 @@ class DoctorLogin:
         # patient_gender_value.grid(row=8, column=1)
 
         for appointment in appointments:
-            self.id = appointment["id"]
             if appointment["token"] == self.token_no:
+                self.id = appointment["id"]
                 ptid = appointment["patientid"]
                 url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
                 response_API = requests.get(url)
@@ -245,8 +245,8 @@ class DoctorLogin:
             self.doctor_window.destroy()
         else:
             for appointment in appointments:
-                self.id = appointment["id"]
                 if appointment["token"] == self.token_no:
+                    self.id = appointment["id"]
                     ptid = appointment["patientid"]
                     url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
                     response_API = requests.get(url)
@@ -269,19 +269,24 @@ class DoctorLogin:
 
     def save_checkup_summary(self):
         global appointments
+        print(appointments)
         symptom_data = self.symptom_entry.get("1.0",END)
         remedy_data = self.remedy_entry.get("1.0",END)
         prescription_data = self.prescription_entry.get("1.0",END)
-        
+        print(self.id)
+        print(symptom_data)
+        print(remedy_data)
+        print(prescription_data)
         url = "http://127.0.0.1:8000/doctor/api/checkup/"+str(self.id)
+        for appointment in appointments:
+                if appointment["token"] == self.token_no:
+                    payload = {"patientid":appointment["patientid"],"doctorid":appointment["doctorid"],"doctorname":appointment["doctorname"],"department": appointment["department"],"date": appointment["date"],"time": appointment["time"],"token": appointment["token"],"symptom":symptom_data,"prescription":prescription_data,"remedy":remedy_data}
+                    json_data = json.dumps(payload)
+                    headers = {"Content-Type": "application/json"}
 
-        payload = {"symptom":symptom_data,"prescription":prescription_data,"remedy":remedy_data}
-        json_data = json.dumps(payload)
-        headers = {"Content-Type": "application/json"}
+                    response = requests.put(url, data=json_data, headers=headers)
 
-        response = requests.post(url, data=json_data, headers=headers)
-
-        if response.status_code == 200:
-            print("Data posted successfully!")
-        else:
-            print("Error posting data:", response.text)
+                    if response.status_code == 200:
+                        print("Data posted successfully!")
+                    else:
+                        print("Error posting data:", response.text)
