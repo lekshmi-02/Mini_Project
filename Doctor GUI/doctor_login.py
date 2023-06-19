@@ -234,6 +234,12 @@ class DoctorLogin:
     def disable_button(self):
         self.out_button.config(state=NORMAL,bg="green")
         self.in_button.config(state=DISABLED,bg="gray")
+        url =f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/in"
+        response =requests.get(url)
+        if response.status_code == 200:
+            print("Message sent successfully")
+        else:
+            print("Failed to send message")
 
     def next_session_details(self):
 
@@ -280,7 +286,7 @@ class DoctorLogin:
         url = "http://127.0.0.1:8000/doctor/api/checkup/"+str(self.id)
         for appointment in appointments:
                 if appointment["token"] == self.token_no:
-                    payload = {"patientid":appointment["patientid"],"doctorid":appointment["doctorid"],"doctorname":appointment["doctorname"],"department": appointment["department"],"date": appointment["date"],"time": appointment["time"],"token": appointment["token"],"symptom":symptom_data,"prescription":prescription_data,"remedy":remedy_data}
+                    payload = {"patientid":appointment["patientid"],"doctorid":appointment["doctorid"],"doctorname":appointment["doctorname"],"department": appointment["department"],"date": appointment["date"],"time": appointment["time"],"token": appointment["token"],"symptoms":symptom_data,"prescription":prescription_data,"remedies":remedy_data}
                     json_data = json.dumps(payload)
                     headers = {"Content-Type": "application/json"}
 
