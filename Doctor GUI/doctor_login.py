@@ -223,7 +223,6 @@ class DoctorLogin:
         self.in_button.config(state=NORMAL,bg="green")
         self.out_button.config(state=DISABLED,bg="gray")
         url =f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/out"
-        print(f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/out")
         response =requests.post(url)
         if response.status_code == 200:
             print("Message sent successfully")
