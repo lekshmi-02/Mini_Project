@@ -224,7 +224,7 @@ class DoctorLogin:
         self.out_button.config(state=DISABLED,bg="gray")
         url =f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/out"
         print(f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/out")
-        response =requests.get(url)
+        response =requests.post(url)
         if response.status_code == 200:
             print("Message sent successfully")
         else:
@@ -235,7 +235,7 @@ class DoctorLogin:
         self.out_button.config(state=NORMAL,bg="green")
         self.in_button.config(state=DISABLED,bg="gray")
         url =f"http://127.0.0.1:8000/doctor/api/doctor/{self.doctor_id[1:]}/in"
-        response =requests.get(url)
+        response =requests.post(url)
         if response.status_code == 200:
             print("Message sent successfully")
         else:
@@ -255,7 +255,7 @@ class DoctorLogin:
                     self.id = appointment["id"]
                     ptid = appointment["patientid"]
                     url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
-                    response_API = requests.get(url)
+                    response_API = requests.post(url)
                     data = response_API.text
                     parse_json = json.loads(data)
                     self.appointment_label.config(text=f"No: of appointments remaining: {self.appointments}")
@@ -275,14 +275,10 @@ class DoctorLogin:
 
     def save_checkup_summary(self):
         global appointments
-        print(appointments)
         symptom_data = self.symptom_entry.get("1.0",END)
         remedy_data = self.remedy_entry.get("1.0",END)
         prescription_data = self.prescription_entry.get("1.0",END)
-        print(self.id)
-        print(symptom_data)
-        print(remedy_data)
-        print(prescription_data)
+
         url = "http://127.0.0.1:8000/doctor/api/checkup/"+str(self.id)
         for appointment in appointments:
                 if appointment["token"] == self.token_no:
