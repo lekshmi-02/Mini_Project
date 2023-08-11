@@ -261,7 +261,7 @@ class DoctorLogin:
                     parse_json = json.loads(data)
                     print(parse_json)
                     self.appointment_label.config(text=f"No: of appointments remaining: {self.appointments}")
-                    self.token_no_label.config(text=f"Token Id : {self.token_no}")
+                    self.token_no_label.config(text=f"Token Id : {self.token_no-1}")
                     self.patient_id_value.config(text=f": {appointment['patientid']}")
                     self.patient_id_value_checkup.config(text=f": {appointment['patientid']}")
                     self.patient_id = appointment['patientid']
