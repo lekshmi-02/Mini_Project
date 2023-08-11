@@ -31,7 +31,7 @@ class DoctorLogin:
         self.doctor_name = None
         self.doctor_name_label = None
         self.doctor_window = None
-        self.token_no = 0
+        self.token_no = 1
         self.window = Tk()
         self.window.title("Doctor Login")
         self.window.config(padx=20, pady=20)
@@ -84,6 +84,7 @@ class DoctorLogin:
         response_API = requests.get(url)
         data = response_API.text
         parse_json = json.loads(data)
+        print(parse_json)
         global appointments 
         appointments =  parse_json
         for appointment in appointments:
@@ -115,7 +116,7 @@ class DoctorLogin:
         self.appointment_label = Label(self.token_details_frame,
                                        text=f"No: of appointments remaining: {self.appointments}",font=(None, 11))
         self.appointment_label.place(x=50, y=150)
-        self.token_no_label = Label(self.token_details_frame, text=f"Token Id : {self.token_no}", font=(None, 15),
+        self.token_no_label = Label(self.token_details_frame, text=f"Token Id : {self.token_no-1}", font=(None, 15),
                                     bg="gray")
         self.token_no_label.place(x=110, y=200)
         self.separator = ttk.Separator(self.token_details_frame,orient="vertical")
@@ -203,6 +204,7 @@ class DoctorLogin:
                 response_API = requests.get(url)
                 data = response_API.text
                 parse_json = json.loads(data)
+                print(parse_json)
                 self.patient_id_value.config(text=f": {appointment['patientid']}",font=("Times New Roman", 13))
                 self.patient_id_value_checkup.config(text=f": {appointment['patientid']}",font=("Times New Roman", 13))
                 self.patient_id = appointment['patientid']
@@ -254,9 +256,10 @@ class DoctorLogin:
                     self.id = appointment["id"]
                     ptid = appointment["patientid"]
                     url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
-                    response_API = requests.post(url)
+                    response_API = requests.get(url)
                     data = response_API.text
                     parse_json = json.loads(data)
+                    print(parse_json)
                     self.appointment_label.config(text=f"No: of appointments remaining: {self.appointments}")
                     self.token_no_label.config(text=f"Token Id : {self.token_no}")
                     self.patient_id_value.config(text=f": {appointment['patientid']}")
