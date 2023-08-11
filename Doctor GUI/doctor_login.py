@@ -252,7 +252,7 @@ class DoctorLogin:
             self.doctor_window.destroy()
         else:
             for appointment in appointments:
-                if appointment["token"] == self.token_no:
+                if appointment["token"] == self.token_no-1:
                     self.id = appointment["id"]
                     ptid = appointment["patientid"]
                     url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
