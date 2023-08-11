@@ -197,7 +197,7 @@ class DoctorLogin:
         # patient_gender_value.grid(row=8, column=1)
 
         for appointment in appointments:
-            if appointment["token"] == self.token_no:
+            if appointment["token"] == self.token_no-1:
                 self.id = appointment["id"]
                 ptid = appointment["patientid"]
                 url = 'http://127.0.0.1:8000/doctor/api/patient/'+ptid[1:]
@@ -283,7 +283,7 @@ class DoctorLogin:
 
         url = "http://127.0.0.1:8000/doctor/api/checkup/"+str(self.id)
         for appointment in appointments:
-                if appointment["token"] == self.token_no:
+                if appointment["token"] == self.token_no-1:
                     payload = {"patientid":appointment["patientid"],"doctorid":appointment["doctorid"],"doctorname":appointment["doctorname"],"department": appointment["department"],"date": appointment["date"],"time": appointment["time"],"token": appointment["token"],"symptoms":symptom_data,"prescription":prescription_data,"remedies":remedy_data}
                     json_data = json.dumps(payload)
                     headers = {"Content-Type": "application/json"}
